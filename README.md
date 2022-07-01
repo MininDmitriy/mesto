@@ -19,4 +19,4 @@
 
 Изображения были ужаты по размерам, а также оптимизированы с применением бесплатной онлайн программы [tinypng](https://tinypng.com/) и онлайн программы [imgonline](https://www.imgonline.com.ua/).
 
-Готовая работа залита на сервис [GitPages](https://minindmitriy.github.io/mesto/).
+Готовая работа залита на бесплатный сервис [GitPages](https://minindmitriy.github.io/mesto/).
