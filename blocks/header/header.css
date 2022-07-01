@@ -1,0 +1,13 @@
+.header {
+  width: 100%;
+  height: 74px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #545454;
+  position: relative;
+}
+
+@media screen and (max-width: 568px) {
+  .header {
+    height: 56px;
+  }
+}

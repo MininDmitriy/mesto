@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Место</title>
+    <link rel="stylesheet" href="./pages/index.css">
+  </head>
+  <body class="root">
+
+    <header class="header root__header">
+      <a href="#" class="header__logo"></a>
+    </header>
+
+    <main class="main root__main">
+
+      <section class="profile main__profile">
+        <div class="profile__area">
+          <img src="images/Avatar.jpg" alt="Фотография Жак-ива Кусто" class="profile__avatar">
+          <div class="profile__info">              
+            <h1 class="profile__fullname">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button"></button>
+            <p class="profile__profession">Исследователь океана</p>
+          </div>
+        </div>        
+        <button class="profile__add-button"></button>
+      </section>
+
+      <section class="elements main__elements">
+        <ul class="cards">
+          <li class="card">
+            <img class="card__image" src="images/Baikal-Lake.jpg" alt="Вид на озеро Байкал в зимнее время">
+            <div class="card__body">
+              <h2 class="card__title">Озеро Байкал</h2>
+              <img class="card__like" alt="Сердечко" src="images/Like.svg">
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="images/cherkessiya.jpg" alt="Заброшенная церковь в Карачаевске">
+            <div class="card__body">
+              <h2 class="card__title">Карачаевск</h2>
+              <img class="card__like" alt="Сердечко" src="images/Like.svg">
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="images/dombay.jpg" alt="Вид на природу в округе поселка Домбай">
+            <div class="card__body">
+              <h2 class="card__title">Домбай</h2>
+              <img class="card__like" alt="Сердечко" src="images/Like.svg">
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="images/mountain-Elbrus.jpg" alt="Вид на гору Эльбрус">
+            <div class="card__body">
+              <h2 class="card__title">Гора Эльбрус</h2>
+              <img class="card__like" alt="Сердечко" src="images/Like.svg">
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="images/mountain-cherkessiya.jpg" alt="Горы в Карачаево-Черкесии">
+            <div class="card__body">
+              <h2 class="card__title">Карачаево-Черкесия</h2>
+              <img class="card__like" alt="Сердечко" src="images/Like.svg">
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="images/Sochi.jpg" alt="Дом, распложенный в Сочи">
+            <div class="card__body">
+              <h2 class="card__title">Сочи</h2>
+              <img class="card__like" alt="Сердечко" src="images/Like.svg">
+            </div>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+
+    <footer class="footer root__footer">
+      <p lang="en" class="footer__text">&#169; 2022 Mesto Russia</p>
+    </footer>
+
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close"></button>
+        <div class="popup__content">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form class="popup__form" method="get" action="">
+            <input type="text" name="fullname" class="popup__input popup__input_border-bottom popup__input_form_name" value="">
+            <input type="text" name="profession" class="popup__input popup__input_border-bottom popup__input_form_profession" value="">
+            <input class="popup__save" type="submit" value="Сохранить"></input>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="./scripts/index.js"></script>    
+  </body>
+</html>
