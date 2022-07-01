@@ -11,7 +11,7 @@
 }
 
 .header__logo:hover {
-  opacity: .6;  
+  opacity: .6;
   transition: opacity .5s linear;
 }
 
