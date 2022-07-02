@@ -1,13 +1,8 @@
 .header__logo {
   width: 143px;
   height: 33px;
-  background-image: url(../../../images/logo.svg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 0;
-  left: 0;
+  background: url(../../../images/logo.svg) no-repeat center / cover;
+  display: block;
 }
 
 .header__logo:hover {
@@ -17,7 +12,7 @@
 
 @media screen and (max-width: 984px) {
   .header__logo {
-    left: 27px;
+    margin-left: 27px;
   }
 }
 

@@ -4,6 +4,7 @@
   background-color: #fff;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   box-sizing: border-box;
   padding: 28px 15px 28px 21px;
   border-bottom-left-radius: 10px;
