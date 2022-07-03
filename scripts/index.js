@@ -21,7 +21,7 @@ function formSubmitHandler (evt) {
   evt.preventDefault();
   fullNameProfile.textContent = fullNameForm.value;
   professionProfile.textContent = professionForm.value;
-  popupContainer.classList.remove('popup_opened');
+  removePopupOpened();
 }
 
 addButtonPopup.addEventListener('click', addPopupOpened);

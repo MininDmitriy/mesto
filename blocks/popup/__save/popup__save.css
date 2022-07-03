@@ -13,6 +13,7 @@
   font-style: normal;
   color: #fff;
   text-align: center;
+  cursor: pointer;
 }
 
 .popup__save:hover {

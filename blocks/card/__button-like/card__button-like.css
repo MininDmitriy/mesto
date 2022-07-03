@@ -5,6 +5,7 @@
   border: none;
   background: url(../../../images/Like.svg) no-repeat center;
   background-size: 22px 19px;
+  cursor: pointer;
 }
 
 .card__button-like:hover {
