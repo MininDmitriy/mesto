@@ -1,7 +1,6 @@
 .card__title {
   color: #000;
   margin: 0;
-  /*max-width: 200px;*/
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-size: 24px;
   line-height: 29px;
@@ -11,9 +10,3 @@
   white-space: nowrap;
   overflow: hidden;
 }
-
-/*@media screen and (max-width: 984px) {
-  .card__title {
-    max-width: 300px;
-  }
-}*/

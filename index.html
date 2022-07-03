@@ -19,11 +19,11 @@
           <img src="images/Avatar.jpg" alt="Фотография Жак-ива Кусто" class="profile__avatar">
           <div class="profile__info">              
             <h1 class="profile__fullname">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button" type="button"></button>
+            <button aria-label="Edit Info" class="profile__edit-button" type="button"></button>
             <p class="profile__profession">Исследователь океана</p>
           </div>
         </div>        
-        <button class="profile__add-button" type="button"></button>
+        <button aria-label="Add place" class="profile__add-button" type="button"></button>
       </section>
 
       <section class="elements main__elements">
@@ -32,42 +32,42 @@
             <img class="card__image" src="images/Baikal-Lake.jpg" alt="Вид на озеро Байкал в зимнее время">
             <div class="card__body">
               <h2 class="card__title">Озеро Байкал</h2>
-              <button class="card__button-like" type="button"></button>
+              <button aria-label="Like" class="card__button-like" type="button"></button>
             </div>
           </li>
           <li class="card">
             <img class="card__image" src="images/cherkessiya.jpg" alt="Заброшенная церковь в Карачаевске">
             <div class="card__body">
               <h2 class="card__title">Карачаевск</h2>
-              <button class="card__button-like" type="button"></button>
+              <button aria-label="Like" class="card__button-like" type="button"></button>
             </div>
           </li>
           <li class="card">
             <img class="card__image" src="images/dombay.jpg" alt="Вид на природу в округе поселка Домбай">
             <div class="card__body">
               <h2 class="card__title">Домбай</h2>
-              <button class="card__button-like" type="button"></button>
+              <button aria-label="Like" class="card__button-like" type="button"></button>
             </div>
           </li>
           <li class="card">
             <img class="card__image" src="images/mountain-Elbrus.jpg" alt="Вид на гору Эльбрус">
             <div class="card__body">
               <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__button-like" type="button"></button>
+              <button aria-label="Like" class="card__button-like" type="button"></button>
             </div>
           </li>
           <li class="card">
             <img class="card__image" src="images/mountain-cherkessiya.jpg" alt="Горы в Карачаево-Черкесии">
             <div class="card__body">
               <h2 class="card__title">Карачаево-Черкесия</h2>
-              <button class="card__button-like" type="button"></button>
+              <button aria-label="Like" class="card__button-like" type="button"></button>
             </div>
           </li>
           <li class="card">
             <img class="card__image" src="images/Sochi.jpg" alt="Дом, распложенный в Сочи">
             <div class="card__body">
               <h2 class="card__title">Сочи</h2>
-              <button class="card__button-like" type="button"></button>
+              <button aria-label="Like" class="card__button-like" type="button"></button>
             </div>
           </li>
         </ul>
@@ -81,13 +81,13 @@
 
     <div class="popup">
       <div class="popup__container">
-        <button class="popup__close" type="button"></button>
+        <button aria-label="Close" class="popup__close" type="button"></button>
         <div class="popup__content">
           <h2 class="popup__title">Редактировать профиль</h2>
           <form class="popup__form" name="info-user" method="get">
             <input type="text" name="fullname" class="popup__input popup__input_border_bottom popup__input_form_name" value="">
             <input type="text" name="profession" class="popup__input popup__input_border_bottom popup__input_form_profession" value="">
-            <input class="popup__save" type="submit" value="Сохранить">
+            <input aria-label="Save" class="popup__save" type="submit" value="Сохранить">
           </form>
         </div>
       </div>
