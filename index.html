@@ -28,48 +28,16 @@
 
       <section class="elements main__elements">
         <ul class="elements__cards">
-          <li class="card">
-            <img class="card__image" src="images/Baikal-Lake.jpg" alt="Вид на озеро Байкал в зимнее время">
-            <div class="card__body">
-              <h2 class="card__title">Озеро Байкал</h2>
-              <button aria-label="Like" class="card__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="images/cherkessiya.jpg" alt="Заброшенная церковь в Карачаевске">
-            <div class="card__body">
-              <h2 class="card__title">Карачаевск</h2>
-              <button aria-label="Like" class="card__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="images/dombay.jpg" alt="Вид на природу в округе поселка Домбай">
-            <div class="card__body">
-              <h2 class="card__title">Домбай</h2>
-              <button aria-label="Like" class="card__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="images/mountain-Elbrus.jpg" alt="Вид на гору Эльбрус">
-            <div class="card__body">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button aria-label="Like" class="card__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="images/mountain-cherkessiya.jpg" alt="Горы в Карачаево-Черкесии">
-            <div class="card__body">
-              <h2 class="card__title">Карачаево-Черкесия</h2>
-              <button aria-label="Like" class="card__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="images/Sochi.jpg" alt="Дом, распложенный в Сочи">
-            <div class="card__body">
-              <h2 class="card__title">Сочи</h2>
-              <button aria-label="Like" class="card__button-like" type="button"></button>
-            </div>
-          </li>
+          <template class="template">
+            <li class="card">
+              <img class="card__image">
+              <button aria-label="Delete" class="card__button-delete" type="button"></button>
+              <div class="card__body">
+                <h2 class="card__title"></h2>
+                <button aria-label="Like" class="card__button-like" type="button"></button>
+              </div>
+            </li>
+          </template>
         </ul>
       </section>
 
@@ -84,7 +52,7 @@
         <button aria-label="Close" class="popup__close" type="button"></button>
         <div class="popup__content">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__form" name="info-user" method="get">
+          <form class="popup__form popup__form_name" name="info-user" method="get">
             <input type="text" name="fullname" class="popup__input popup__input_border_bottom popup__input_form_name" value="">
             <input type="text" name="profession" class="popup__input popup__input_border_bottom popup__input_form_profession" value="">
             <input aria-label="Save" class="popup__save" type="submit" value="Сохранить">
@@ -93,6 +61,29 @@
       </div>
     </div>
 
-    <script src="./scripts/index.js"></script>    
+    <div class="popup">
+      <div class="popup__container">
+        <button aria-label="Close" class="popup__close" type="button"></button>
+        <div class="popup__content">
+          <h2 class="popup__title">Новое место</h2>
+          <form class="popup__form popup__form_place" name="info-place" method="get">
+            <input type="text" name="name-place" class="popup__input popup__input_border_bottom popup__input_form_name-place" value="" placeholder="Название">
+            <input type="url" name="source-on-place" class="popup__input popup__input_border_bottom popup__input_form_source-on-place" value="" placeholder="Ссылка на картинку">
+            <input aria-label="Create" class="popup__save" type="submit" value="Создать">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup">
+        <figure class="popup__figure">
+          <button aria-label="Close" class="popup__close" type="button"></button>
+          <img class="popup__picture">
+          <figcaption class="popup__figcaption"></figcaption>
+        </figure>
+    </div>    
+    
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/places.js"></script>
   </body>
 </html>

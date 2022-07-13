@@ -1,9 +1,9 @@
 .elements__cards {
   width: 100%;
-  min-height: 744px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(282px, max-content));
-  grid-template-rows: repeat(auto-fit, minmax(361px, max-content));
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-template-rows: repeat(auto-fit, 361px);
+
   gap: 20px 17px;
   list-style-type: none;
   margin: 0;
@@ -11,14 +11,7 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 620px) {
-  .elements__cards {
-    grid-template-columns: repeat(auto-fit, minmax(256.5px, max-content));
-    grid-template-rows: repeat(auto-fit, minmax(335.5px, max-content));
-  }
-}
-
-@media screen and (max-width: 568px) {
+@media screen and (max-width: 618px) {
   .elements__cards {
     display: flex;
     flex-direction: column;
