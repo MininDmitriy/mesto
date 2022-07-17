@@ -43,34 +43,34 @@ const placeSourceFormPopup = document.querySelector(selectors.placeSourceFormPop
 const template = document.querySelector(selectors.template).content;
 const elementsContainer = document.querySelector(selectors.elementsContainer);
 const elementItem = template.querySelector(selectors.card);
+const figcaptionPopup = document.querySelector(selectors.figcaptionPopup);
+const picturePopup = document.querySelector(selectors.picturePopup);
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+};
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+};
 
 function openProfilePopup() {
   fullNameFormPopup.value = fullNameProfile.textContent;
   professionFormPopup.value = professionProfile.textContent;
-  popupContainerFormProfile.classList.add('popup_opened');
-};
-
-function openNewPlacePopup() {
-  popupContainerFormNewPlace.classList.add('popup_opened');
-};
-
-function removePopupOpened() {
-  popupContainerFormProfile.classList.remove('popup_opened');
-  popupContainerFormNewPlace.classList.remove('popup_opened');
-  popupContainerOpenPicture.classList.remove('popup_opened');
+  openPopup(popupContainerFormProfile);
 };
 
 function submitAPopupProfileForm (evt) {
   evt.preventDefault();
   fullNameProfile.textContent = fullNameFormPopup.value;
   professionProfile.textContent = professionFormPopup.value;
-  removePopupOpened();
+  closePopup(popupContainerFormProfile);
 };
 
 function submitAPopupFormNewPlace (evt) {
   evt.preventDefault();
   renderCard({name: namePlaceFormPopup.value, link: placeSourceFormPopup.value});
-  removePopupOpened();
+  closePopup(popupContainerFormNewPlace);
 
   //Функция создания карточки отработала, очистили значение input формы
   namePlaceFormPopup.value = '';
@@ -78,10 +78,10 @@ function submitAPopupFormNewPlace (evt) {
 };
 
 buttonEditProfile.addEventListener('click', () => openProfilePopup());
-buttonAddPlace.addEventListener('click',() => openNewPlacePopup());
-buttonClosePopupFormProfile.addEventListener('click', () => removePopupOpened());
-buttonClosePopupFormNewPlace.addEventListener('click', () => removePopupOpened());
-buttonClosePopupOpenPicture.addEventListener('click', () => removePopupOpened());
+buttonAddPlace.addEventListener('click',() => openPopup(popupContainerFormNewPlace));
+buttonClosePopupFormProfile.addEventListener('click', () => closePopup(popupContainerFormProfile));
+buttonClosePopupFormNewPlace.addEventListener('click', () => closePopup(popupContainerFormNewPlace));
+buttonClosePopupOpenPicture.addEventListener('click', () => closePopup(popupContainerOpenPicture));
 
 nameProfileFormPopup.addEventListener('submit', submitAPopupProfileForm);
 newPlaceFormPopup.addEventListener('submit', submitAPopupFormNewPlace);
@@ -89,6 +89,7 @@ newPlaceFormPopup.addEventListener('submit', submitAPopupFormNewPlace);
 function createCard({name, link}) {
   const elementCopy = elementItem.cloneNode(true);
   const cardImage = elementCopy.querySelector(selectors.cardImage);
+  const buttonCardLike =  elementCopy.querySelector(selectors.buttonCardLike);
   
   elementCopy.querySelector(selectors.cardTitle).textContent = name;
   cardImage.alt = name;
@@ -96,32 +97,27 @@ function createCard({name, link}) {
   
   //Кнопка "удалить"
   elementCopy.querySelector(selectors.buttonDeleteCard).addEventListener('click', function() {
-  elementCopy.remove();
+    elementCopy.remove();
   });
   
   //Кнопка "нравится"
-  const buttonCardLike =  elementCopy.querySelector(selectors.buttonCardLike);
-  
   buttonCardLike.addEventListener('click', function() {
-  buttonCardLike.classList.toggle('card__button-like_active');
+    buttonCardLike.classList.toggle('card__button-like_active');
   });
   
   //Добавление атрибутов в поп-ап и его открытие
-  const picturePopup = document.querySelector(selectors.picturePopup);
-
   cardImage.addEventListener('click', function() {
-  picturePopup.src = link;
-  picturePopup.alt = name;
-  document.querySelector(selectors.figcaptionPopup).textContent = name;
-  popupContainerOpenPicture.classList.add('popup_opened');
+    picturePopup.src = link;
+    picturePopup.alt = name;
+    figcaptionPopup.textContent = name;
+    openPopup(popupContainerOpenPicture);
   });
 
   return elementCopy;
 };
 
 function renderCard(card) {
-  let variable = createCard(card);
-  elementsContainer.prepend(variable);
+  elementsContainer.prepend(createCard(card));
 };
 
 function createInitialCards() {
