@@ -123,7 +123,7 @@ function createCard({name, link}) {
   buttonCardLike.addEventListener('click', function() {
     buttonCardLike.classList.toggle('card__button-like_active');
   });
-
+  
   cardImage.addEventListener('click', function() {
     picturePopup.src = link;
     picturePopup.alt = name;
