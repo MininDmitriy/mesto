@@ -49,35 +49,35 @@
 
     <div class="popup popup_form_profile">
       <div class="popup__container">
-        <button aria-label="Close" class="popup__close" type="button"></button>
-        <div class="popup__content">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__form popup__form_name" name="info-user" method="get">
-            <input type="text" name="fullname" class="popup__input popup__input_border_bottom popup__input_form_name" value="">
-            <input type="text" name="profession" class="popup__input popup__input_border_bottom popup__input_form_profession" value="">
-            <input aria-label="Save" class="popup__save" type="submit" value="Сохранить">
-          </form>
-        </div>
+        <button aria-label="Close" class="popup__button-close" type="button"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form popup__form_name" name="info-user" method="get" novalidate>
+          <input type="text" name="popup__input-text_fullname" class="popup__input popup__input_form_name" value="" minlength="2" maxlength="40" required>
+          <span class="popup__input-text popup__input-text_fullname-error"></span>
+          <input type="text" name="popup__input-text_profession" class="popup__input popup__input_form_profession" value="" minlength="2" maxlength="200" required>
+          <span class="popup__input-text popup__input-text_profession-error"></span>
+          <input aria-label="Save" class="popup__button-save" type="submit" value="Сохранить">
+        </form>
       </div>
     </div>
 
     <div class="popup popup_form_new-place">
       <div class="popup__container">
-        <button aria-label="Close" class="popup__close" type="button"></button>
-        <div class="popup__content">
-          <h2 class="popup__title">Новое место</h2>
-          <form class="popup__form popup__form_place" name="info-place" method="get">
-            <input type="text" name="name-place" class="popup__input popup__input_border_bottom popup__input_form_name-place" value="" placeholder="Название">
-            <input type="url" name="source-on-place" class="popup__input popup__input_border_bottom popup__input_form_source-on-place" value="" placeholder="Ссылка на картинку">
-            <input aria-label="Create" class="popup__save" type="submit" value="Создать">
-          </form>
-        </div>
+        <button aria-label="Close" class="popup__button-close" type="button"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form popup__form_place" name="info-place" method="get" novalidate>
+          <input type="text" name="popup__input-text_name-place" class="popup__input popup__input_form_name-place" value="" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="popup__input-text popup__input-text_name-place-error"></span>
+          <input type="url" name="popup__input-text_source-on-place" class="popup__input popup__input_form_source-on-place" value="" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-text popup__input-text_source-on-place-error"></span>
+          <input aria-label="Create" class="popup__button-save" type="submit" value="Создать">
+        </form>
       </div>
     </div>
 
     <div class="popup popup_background-color popup_open-picture">
         <figure class="popup__figure">
-          <button aria-label="Close" class="popup__close" type="button"></button>
+          <button aria-label="Close" class="popup__button-close" type="button"></button>
           <img class="popup__picture">
           <figcaption class="popup__figcaption"></figcaption>
         </figure>
@@ -85,5 +85,6 @@
         
     <script src="./scripts/places.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
