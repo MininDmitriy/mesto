@@ -68,10 +68,6 @@ function closedPopupByClickOnOverlay(evt) {
   };
 };
 
-popupContainerFormProfile.addEventListener('click', closedPopupByClickOnOverlay);
-popupContainerFormNewPlace.addEventListener('click', closedPopupByClickOnOverlay);
-popupContainerOpenPicture.addEventListener('click', closedPopupByClickOnOverlay);
-
 function keyHandler(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
@@ -91,26 +87,10 @@ function submitAPopupFormNewPlace() {
   newPlaceFormPopup.reset();
 };
 
-buttonEditProfile.addEventListener('click', () => {
-  openProfilePopup();
-  startedValidityFormProfile(popupContainerFormProfile);
-});
-
-buttonAddPlace.addEventListener('click',() => {
-  openPopup(popupContainerFormNewPlace);
-  startedValidityFormNewPlace(popupContainerFormNewPlace);
-});
-
-buttonClosePopupFormProfile.addEventListener('click', () => closePopup(popupContainerFormProfile));
-buttonClosePopupFormNewPlace.addEventListener('click', () => closePopup(popupContainerFormNewPlace));
-buttonClosePopupOpenPicture.addEventListener('click', () => closePopup(popupContainerOpenPicture));
-nameProfileFormPopup.addEventListener('submit', submitAPopupProfileForm);
-newPlaceFormPopup.addEventListener('submit', submitAPopupFormNewPlace);
-
 function createCard({name, link}) {
   const elementCopy = elementItem.cloneNode(true);
   const cardImage = elementCopy.querySelector(selectors.cardImage);
-  const buttonCardLike =  elementCopy.querySelector(selectors.buttonCardLike);
+  const buttonCardLike = elementCopy.querySelector(selectors.buttonCardLike);
   
   elementCopy.querySelector(selectors.cardTitle).textContent = name;
   cardImage.alt = name;
@@ -143,3 +123,23 @@ function createInitialCards() {
 };
 
 createInitialCards();
+
+popupContainerFormProfile.addEventListener('click', closedPopupByClickOnOverlay);
+popupContainerFormNewPlace.addEventListener('click', closedPopupByClickOnOverlay);
+popupContainerOpenPicture.addEventListener('click', closedPopupByClickOnOverlay);
+
+buttonEditProfile.addEventListener('click', () => {
+  openProfilePopup();
+  startedValidityForm(popupContainerFormProfile);
+});
+
+buttonAddPlace.addEventListener('click',() => {
+  openPopup(popupContainerFormNewPlace);
+  startedValidityForm(popupContainerFormNewPlace);
+});
+
+buttonClosePopupFormProfile.addEventListener('click', () => closePopup(popupContainerFormProfile));
+buttonClosePopupFormNewPlace.addEventListener('click', () => closePopup(popupContainerFormNewPlace));
+buttonClosePopupOpenPicture.addEventListener('click', () => closePopup(popupContainerOpenPicture));
+nameProfileFormPopup.addEventListener('submit', submitAPopupProfileForm);
+newPlaceFormPopup.addEventListener('submit', submitAPopupFormNewPlace);
