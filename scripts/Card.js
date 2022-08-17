@@ -11,6 +11,18 @@ export class Card {
     this._buttonCardLike = selectors.buttonCardLike;
     this._cardTitle = selectors.cardTitle;
   }
+  
+  generateCard() {
+    this._element = this._getTemplate();
+    this._setEventListeners();
+    this._cardTitle = this._element.querySelector(this._cardTitle);
+
+    this._cardImage.alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardTitle.textContent = this._name;
+
+    return this._element;
+  }
 
   _getTemplate() {
     const elementCopy = document
@@ -47,17 +59,5 @@ export class Card {
 
   _likeCardClick() {
     this._buttonCardLike.classList.toggle('card__button-like_active');
-  }
-  
-  generateCard() {
-    this._element = this._getTemplate();
-    this._setEventListeners();
-    this._cardTitle = this._element.querySelector(this._cardTitle);
-
-    this._cardImage.alt = this._name;
-    this._cardImage.src = this._link;
-    this._cardTitle.textContent = this._name;
-
-    return this._element;
   }
 }

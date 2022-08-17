@@ -1,8 +1,8 @@
 import { Card } from './Card.js';
 import { initialCards } from './places.js';
-import { FormValidator, validationConfig } from './FormValidator.js';
+import { FormValidator } from './FormValidator.js';
 
-export const selectors = {
+const selectors = {
   popupContainerFormProfile: '.popup_form_profile',
   popupContainerFormNewPlace: '.popup_form_new-place',
   popupContainerOpenPicture: '.popup_open-picture',
@@ -81,33 +81,33 @@ function closePopupByPressButtonEsc(evt) {
     closePopup(openedPopup);
   };
 };
-//отправка формы профиля с закрытием поп-апа и отменой стандартного события обрыботки формы
+//отправка формы профиля с закрытием поп-апа и отменой стандартного события обработки формы
 function submitPopupProfileForm(evt) {
   fullNameProfile.textContent = fullNameFormPopup.value;
   professionProfile.textContent = professionFormPopup.value;
   closePopup(popupContainerFormProfile);
   evt.preventDefault();
 };
+//создание карточки
+function createCard(obj) {
+  const card = new Card(obj, selectors.templateCard, openImagePopup, selectors);
+  return card.generateCard();
+};
 //отправка формы нового места с закрытием поп-апа, созданием новой карточки
-//с использованием класса, отменной стандартного события обработки формы, очистка инпутов
-//формы нового места
+//отменой стандартного события обработки формы, сброс формы
 function submitPopupFormNewPlace(evt) {
-  const card = new Card({name: namePlaceFormPopup.value, link: placeSourceFormPopup.value}, selectors.templateCard, openImagePopup, selectors);
-  const cardElement = card.generateCard();
-  elementsContainer.prepend(cardElement);
+  elementsContainer.prepend(createCard({name: namePlaceFormPopup.value, link: placeSourceFormPopup.value}));
   closePopup(popupContainerFormNewPlace);
   evt.preventDefault();
   newPlaceFormPopup.reset();
 };
 //создание карточек с использованием массива данных о карточках
 initialCards.forEach((item) => {
-  const card = new Card(item, selectors.templateCard, openImagePopup, selectors);
-  const cardElement = card.generateCard();
-  elementsContainer.prepend(cardElement);
+  elementsContainer.prepend(createCard(item));
 });
 //создание объектов валидации форм и вызов методов валидации
-const profileValidation = new FormValidator(validationConfig, newPlaceFormPopup);
-const newCardValidation = new FormValidator(validationConfig, nameProfileFormPopup);
+const profileValidation = new FormValidator(nameProfileFormPopup);
+const newCardValidation = new FormValidator(newPlaceFormPopup);
 profileValidation.enableValidation();
 newCardValidation.enableValidation();
 //закрытие поп-апов при клике на оверлей
@@ -119,9 +119,10 @@ buttonEditProfile.addEventListener('click', () => {
   openProfilePopup();
   profileValidation.resetValidation();
 });
-//открытие поп-апа нового места и задание стартовой валидации
+//открытие поп-апа нового места, сброс формы и задание стартовой валидации
 buttonAddPlace.addEventListener('click',() => {
   openPopup(popupContainerFormNewPlace);
+  newPlaceFormPopup.reset();
   newCardValidation.resetValidation();
 });
 //закрытие поп-апов при клике на кнопку закрытия
