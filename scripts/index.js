@@ -30,7 +30,7 @@ export const selectors = {
 
 const popupContainerFormProfile = document.querySelector(selectors.popupContainerFormProfile);
 const popupContainerFormNewPlace = document.querySelector(selectors.popupContainerFormNewPlace);
-export const popupContainerOpenPicture = document.querySelector(selectors.popupContainerOpenPicture);
+const popupContainerOpenPicture = document.querySelector(selectors.popupContainerOpenPicture);
 const buttonEditProfile = document.querySelector(selectors.buttonEditProfile);
 const buttonAddPlace = document.querySelector(selectors.buttonAddPlace);
 const buttonClosePopupFormProfile = popupContainerFormProfile.querySelector(selectors.buttonClosePopup);
@@ -44,117 +44,90 @@ const fullNameFormPopup = document.querySelector(selectors.fullNameFormPopup);
 const professionFormPopup = document.querySelector(selectors.professionFormPopup);
 const namePlaceFormPopup = document.querySelector(selectors.namePlaceFormPopup);
 const placeSourceFormPopup = document.querySelector(selectors.placeSourceFormPopup);
-
-export function openPopup(popup) {
+const elementsContainer = document.querySelector(selectors.elementsContainer);
+//открытие поп-апов
+function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', keyHandler);
+  document.addEventListener('keydown', closePopupByPressButtonEsc);
 };
-
+//закрытие поп-апов
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', keyHandler);
+  document.removeEventListener('keydown', closePopupByPressButtonEsc);
 };
-
+//откртие поп-апа с заполнением полей
 function openProfilePopup() {
   fullNameFormPopup.value = fullNameProfile.textContent;
   professionFormPopup.value = professionProfile.textContent;
-  
   openPopup(popupContainerFormProfile);
 };
-
+//открытие поп-апа с картикой в масштабе
+function openImagePopup(name, link) {
+  document.querySelector(selectors.picturePopup).src = link;
+  document.querySelector(selectors.picturePopup).alt = name;
+  document.querySelector(selectors.figcaptionPopup).textContent = name;
+  openPopup(popupContainerOpenPicture); 
+};
+//закрытие поп-апов при клике на оверлей
 function closedPopupByClickOnOverlay(evt) {
   if (evt.target === evt.currentTarget) {
     closePopup(evt.target);
   };
 };
-
-function keyHandler(evt) {
+//закрытие поп-апов при нажатии на кнопку Esc
+function closePopupByPressButtonEsc(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   };
 };
-
-function submitAPopupProfileForm(evt) {
+//отправка формы профиля с закрытием поп-апа и отменой стандартного события обрыботки формы
+function submitPopupProfileForm(evt) {
   fullNameProfile.textContent = fullNameFormPopup.value;
   professionProfile.textContent = professionFormPopup.value;
   closePopup(popupContainerFormProfile);
   evt.preventDefault();
 };
-
-function submitAPopupFormNewPlace(evt) {
-  const card = new Card({name: namePlaceFormPopup.value, link: placeSourceFormPopup.value}, selectors.templateCard);
+//отправка формы нового места с закрытием поп-апа, созданием новой карточки
+//с использованием класса, отменной стандартного события обработки формы, очистка инпутов
+//формы нового места
+function submitPopupFormNewPlace(evt) {
+  const card = new Card({name: namePlaceFormPopup.value, link: placeSourceFormPopup.value}, selectors.templateCard, openImagePopup, selectors);
   const cardElement = card.generateCard();
-  document.querySelector(selectors.elementsContainer).prepend(cardElement);
-  
-  startedValidityFormNewPlace(popupContainerFormNewPlace);
+  elementsContainer.prepend(cardElement);
   closePopup(popupContainerFormNewPlace);
   evt.preventDefault();
   newPlaceFormPopup.reset();
 };
-
-function startedValidityFormNewPlace(popup) {
-  const buttonElement = popup.querySelector(validationConfig.submitButtonSelector);
-  buttonElement.classList.add(validationConfig.inactiveButtonClass);
-  buttonElement.setAttribute('disabled', true);
-  buttonElement.classList.remove(validationConfig.buttonWithFormValidity);
-};
-
-function startedValidityFormProfile(popup) {
-  const buttonElement = popup.querySelector(validationConfig.submitButtonSelector);
-  buttonElement.classList.remove(validationConfig.inactiveButtonClass);
-  buttonElement.removeAttribute('disabled');
-  buttonElement.classList.add(validationConfig.buttonWithFormValidity);
-  startedValidationInput(popup);
-};
-
-function startedValidationInput(popup) {
-  const inputList = Array.from(popup.querySelectorAll(validationConfig.inputSelector));
-
-  inputList.forEach((inputElement) => {
-    if (inputElement.validity.valid) {
-      inputElement.classList.remove(validationConfig.inputErrorClass);
-      inputElement.classList.add(validationConfig.inputValidity);
-      popup.querySelector(`.${inputElement.name}-error`).textContent = '';
-    } else if (popup.querySelector(`.${inputElement.name}-error`).textContent.length !== 0 && !inputElement.validity.valid) {
-      inputElement.classList.add(validationConfig.inputErrorClass);
-      inputElement.classList.remove(validationConfig.inputValidity);
-    } else {
-      inputElement.classList.remove(validationConfig.inputErrorClass);
-      inputElement.classList.add(validationConfig.inputValidity);
-    };
-  });
-}
-
+//создание карточек с использованием массива данных о карточках
 initialCards.forEach((item) => {
-  const card = new Card(item, selectors.templateCard);
+  const card = new Card(item, selectors.templateCard, openImagePopup, selectors);
   const cardElement = card.generateCard();
-
-  document.querySelector(selectors.elementsContainer).prepend(cardElement);
+  elementsContainer.prepend(cardElement);
 });
-
-const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
-formList.forEach((formElement) => {
-  const liveValidation = new FormValidator(validationConfig, formElement);
-  liveValidation.enableValidation();
-});
-
+//создание объектов валидации форм и вызов методов валидации
+const profileValidation = new FormValidator(validationConfig, newPlaceFormPopup);
+const newCardValidation = new FormValidator(validationConfig, nameProfileFormPopup);
+profileValidation.enableValidation();
+newCardValidation.enableValidation();
+//закрытие поп-апов при клике на оверлей
 popupContainerFormProfile.addEventListener('click', closedPopupByClickOnOverlay);
 popupContainerFormNewPlace.addEventListener('click', closedPopupByClickOnOverlay);
 popupContainerOpenPicture.addEventListener('click', closedPopupByClickOnOverlay);
-
+//открытие поп-апа редактирования профиля и задание стартовой валидации
 buttonEditProfile.addEventListener('click', () => {
   openProfilePopup();
-  startedValidityFormProfile(popupContainerFormProfile);
+  profileValidation.resetValidation();
 });
-
+//открытие поп-апа нового места и задание стартовой валидации
 buttonAddPlace.addEventListener('click',() => {
   openPopup(popupContainerFormNewPlace);
-  startedValidationInput(popupContainerFormNewPlace);
+  newCardValidation.resetValidation();
 });
-
+//закрытие поп-апов при клике на кнопку закрытия
 buttonClosePopupFormProfile.addEventListener('click', () => closePopup(popupContainerFormProfile));
 buttonClosePopupFormNewPlace.addEventListener('click', () => closePopup(popupContainerFormNewPlace));
 buttonClosePopupOpenPicture.addEventListener('click', () => closePopup(popupContainerOpenPicture));
-nameProfileFormPopup.addEventListener('submit', submitAPopupProfileForm);
-newPlaceFormPopup.addEventListener('submit', submitAPopupFormNewPlace);
+//отправка заполенных форм
+nameProfileFormPopup.addEventListener('submit', submitPopupProfileForm);
+newPlaceFormPopup.addEventListener('submit', submitPopupFormNewPlace);

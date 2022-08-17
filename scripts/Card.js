@@ -1,58 +1,62 @@
-import { selectors, openPopup, popupContainerOpenPicture } from './index.js';
-
 export class Card {
-  constructor(obj, cardSelector) {
+  constructor(obj, cardSelector, openImagePopup, selectors) {
     this._name = obj.name;
     this._link = obj.link;
     this._cardSelector = cardSelector;
+    this._openImagePopup = openImagePopup;
+    this._card = selectors.card;
+    this._buttonDeleteCard = selectors.buttonDeleteCard;
+    this._buttonCardLike = selectors.buttonCardLike;
+    this._cardImage = selectors.cardImage;
+    this._buttonCardLike = selectors.buttonCardLike;
+    this._cardTitle = selectors.cardTitle;
   }
 
   _getTemplate() {
     const elementCopy = document
     .querySelector(this._cardSelector)
     .content
-    .querySelector(selectors.card)
+    .querySelector(this._card)
     .cloneNode(true);
 
     return elementCopy;
   }
 
   _setEventListeners() {
-    this._element.querySelector(selectors.buttonDeleteCard).addEventListener('click', () => {
+    this._buttonDeleteCard = this._element.querySelector(this._buttonDeleteCard);
+    this._buttonCardLike = this._element.querySelector(this._buttonCardLike);
+    this._cardImage = this._element.querySelector(this._cardImage);
+    
+    this._buttonDeleteCard.addEventListener('click', () => {
       this._removeCardClick();
     });
 
-    this._element.querySelector(selectors.buttonCardLike).addEventListener('click', () => {
+    this._buttonCardLike.addEventListener('click', () => {
       this._likeCardClick();
     });
 
-    this._element.querySelector(selectors.cardImage).addEventListener('click', () => {
-      document.querySelector(selectors.picturePopup).src = this._link;
-      document.querySelector(selectors.picturePopup).alt = this._name;
-      document.querySelector(selectors.figcaptionPopup).textContent = this._name;
-      this._openPopupImage();
+    this._cardImage.addEventListener('click', () => {
+      this._openImagePopup(this._name, this._link);
     });
   }
 
   _removeCardClick() {
     this._element.remove();
+    this._element = null;
   }
 
   _likeCardClick() {
-    this._element.querySelector(selectors.buttonCardLike).classList.toggle('card__button-like_active');
-  }
-
-  _openPopupImage () {
-    openPopup(popupContainerOpenPicture);
+    this._buttonCardLike.classList.toggle('card__button-like_active');
   }
   
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
+    this._cardTitle = this._element.querySelector(this._cardTitle);
 
-    this._element.querySelector(selectors.cardImage).alt = this._name;
-    this._element.querySelector(selectors.cardImage).src = this._link;
-    this._element.querySelector(selectors.cardTitle).textContent = this._name;
+    this._cardImage.alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardTitle.textContent = this._name;
 
     return this._element;
   }

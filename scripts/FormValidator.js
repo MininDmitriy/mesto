@@ -21,64 +21,106 @@ export class FormValidator {
     this._errorVisibility = validationConfig.errorVisibility;
     this._formElement = formElement;
   }
-  
+  //публичная функция начала валидации
   enableValidation() {
     this._setEventListeners();
   };
-
+  //приватная функция 
   _setEventListeners() {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   
-    this._toggleButtonState(this._inputList, this._buttonElement);
+    this._toggleButtonState();
   
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-        this._checkInputValidity(this._formElement, inputElement);
-        this._toggleButtonState(this._inputList, this._buttonElement);
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState();
       });
     });
   };
-
-  _toggleButtonState(inputList, buttonElement) {
-    if (this._hasInvalidInput(inputList)) {
-      buttonElement.classList.add(this._inactiveButtonClass);
-      buttonElement.setAttribute('disabled', true);
-      buttonElement.classList.remove(this._buttonWithFormValidity);
+  //приватная валидация по активации и дезактивации кнопки оптравки формы в зависимости от валидации формы
+  _toggleButtonState() {
+    if (this._hasInvalidInput()) {
+      this._buttonElement.classList.add(this._inactiveButtonClass);
+      this._buttonElement.setAttribute('disabled', true);
+      this._buttonElement.classList.remove(this._buttonWithFormValidity);
     } else {
-      buttonElement.classList.remove(this._inactiveButtonClass);
-      buttonElement.removeAttribute('disabled');
-      buttonElement.classList.add(this._buttonWithFormValidity);
+      this._buttonElement.classList.remove(this._inactiveButtonClass);
+      this._buttonElement.removeAttribute('disabled');
+      this._buttonElement.classList.add(this._buttonWithFormValidity);
     }
   };
-
-  _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
+  //приватная функция по общей валидация всех инпутов валидируемой формы
+  _hasInvalidInput() {
+    return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     })
   };
-  
-  _checkInputValidity(formElement, inputElement) {
+  //приватная функция по оценке валидности инпутов и выводу или сокрытию элементов и текста об ошибке
+  _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
-      this._showInputError(formElement, inputElement, inputElement.validationMessage);
+      this._showInputError(inputElement);
     } else {
-      this._hideInputError(formElement, inputElement);
+      this._hideInputError(inputElement);
     }
   };
-
-  _showInputError (formElement, inputElement, errorMessage) {
-    this._errorElement = formElement.querySelector(`.${inputElement.name}-error`);
+  //приватная функция по демонстарции элементов ошибок и вывод текста ошибки
+  _showInputError(inputElement) {
+    this._errorElement = this._formElement.querySelector(`.${inputElement.name}-error`);
     inputElement.classList.add(this._inputErrorClass);
     inputElement.classList.remove(this._inputValidity);
-    this._errorElement.textContent = errorMessage;
+    this._errorElement.textContent = inputElement.validationMessage;
     this._errorElement.classList.add(this._errorVisibility);
   };
-  
-  _hideInputError (formElement, inputElement) {
-    this._errorElement = formElement.querySelector(`.${inputElement.name}-error`);
+  //приватная функция по сокрытию элементов ошибок и очистка сообщений об ошибках
+  _hideInputError(inputElement) {
+    this._errorElement = this._formElement.querySelector(`.${inputElement.name}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     inputElement.classList.add(this._inputValidity);
     this._errorElement.classList.remove(this._errorVisibility);
     this._errorElement.textContent = '';
   };
+  
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._inputList.forEach((inputElement) => {
+      //console.log(inputElement);
+      this._hideInputError(inputElement);
+    });
+  } 
+
+   /*startedValidityFormNewPlace(popup) {
+    this._buttonElement = popup.querySelector(this._submitButtonSelector);
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute('disabled', true);
+    this._buttonElement.classList.remove(this._buttonWithFormValidity);
+    this._resetValidation();
+  };
+  
+  _startedValidityFormProfile() {
+    //this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
+    this._buttonElement.removeAttribute('disabled');
+    this._buttonElement.classList.add(this._buttonWithFormValidity);
+    this._startedValidationInput();
+  };
+
+  _startedValidationInput() {
+    //this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._inputList.forEach((inputElement) => {
+      if (inputElement.validity.valid) {
+        inputElement.classList.remove(this._inputErrorClass);
+        inputElement.classList.add(this._inputValidity);
+        this._formElement.querySelector(`.${inputElement.name}-error`).textContent = '';
+      } else if (this._formElement.querySelector(`.${inputElement.name}-error`).textContent.length !== 0 && !inputElement.validity.valid) {
+        inputElement.classList.add(this._inputErrorClass);
+        inputElement.classList.remove(this._inputValidity);
+      } else {
+        inputElement.classList.remove(this._inputErrorClass);
+        inputElement.classList.add(this._inputValidity);
+      };
+    });
+  }*/
 }
