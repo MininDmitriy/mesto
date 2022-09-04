@@ -1,14 +1,13 @@
-export class Card {
-  constructor(obj, cardSelector, openImagePopup, selectors) {
+export default class Card {
+  constructor(obj, cardSelector, {handleCardClick}, selectors) {
     this._name = obj.name;
     this._link = obj.link;
     this._cardSelector = cardSelector;
-    this._openImagePopup = openImagePopup;
+    this._handleCardClick = handleCardClick;
     this._card = selectors.card;
     this._buttonDeleteCard = selectors.buttonDeleteCard;
     this._buttonCardLike = selectors.buttonCardLike;
     this._cardImage = selectors.cardImage;
-    this._buttonCardLike = selectors.buttonCardLike;
     this._cardTitle = selectors.cardTitle;
   }
   
@@ -48,7 +47,7 @@ export class Card {
     });
 
     this._cardImage.addEventListener('click', () => {
-      this._openImagePopup(this._name, this._link);
+      this._handleCardClick(this._name, this._link);
     });
   }
 
