@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css">
   </head>
   <body class="root">
 
@@ -16,7 +15,7 @@
 
       <section class="profile main__profile">
         <div class="profile__area">
-          <img src="images/Avatar.jpg" alt="Фотография Жак-ива Кусто" class="profile__avatar">
+          <img src="<%=require('./images/Avatar.jpg')%>" alt="Фотография Жак-ива Кусто" class="profile__avatar">
           <div class="profile__info">              
             <h1 class="profile__fullname">Жак-Ив Кусто</h1>
             <button aria-label="Edit Info" class="profile__edit-button" type="button"></button>
@@ -83,6 +82,5 @@
         </figure>
     </div>    
     
-    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>

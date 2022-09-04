@@ -1,3 +1,4 @@
+import './index.css';
 import { initialCards } from '../components/places.js';
 import {
   selectors,
