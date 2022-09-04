@@ -7,14 +7,14 @@ export default class Card {
     this._card = selectors.card;
     this._buttonDeleteCard = selectors.buttonDeleteCard;
     this._buttonCardLike = selectors.buttonCardLike;
-    this._cardImage = selectors.cardImage;
-    this._cardTitle = selectors.cardTitle;
+    this._image = selectors.cardImage;
+    this._title = selectors.cardTitle;
   }
   
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
-    this._cardTitle = this._element.querySelector(this._cardTitle);
+    this._cardTitle = this._element.querySelector(this._title);
 
     this._cardImage.alt = this._name;
     this._cardImage.src = this._link;
@@ -36,7 +36,7 @@ export default class Card {
   _setEventListeners() {
     this._buttonDeleteCard = this._element.querySelector(this._buttonDeleteCard);
     this._buttonCardLike = this._element.querySelector(this._buttonCardLike);
-    this._cardImage = this._element.querySelector(this._cardImage);
+    this._cardImage = this._element.querySelector(this._image);
     
     this._buttonDeleteCard.addEventListener('click', () => {
       this._removeCardClick();
