@@ -80,7 +80,27 @@
           <img class="popup__picture">
           <figcaption class="popup__figcaption"></figcaption>
         </figure>
-    </div>    
-    
+    </div>
+
+    <div class="popup popup_background-color popup_delete-picture">
+      <div class="popup__container">
+        <button aria-label="Close" class="popup__button-close" type="button"></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <input aria-label="Create" class="popup__button-save" type="submit" value="Да">
+      </div>
+    </div>
+
+    <div class="popup popup_form_edit-picture-profile">
+      <div class="popup__container">
+        <button aria-label="Close" class="popup__button-close" type="button"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form popup__form_avatar" name="info-avatar" method="get" novalidate>
+          <input type="url" name="popup__input-text_source-on-avatar" class="popup__input popup__input_form_source-on-avatar" value="" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-text popup__input-text_source-on-avatar-error"></span>
+          <input aria-label="Save" class="popup__button-save" type="submit" value="Сохранить">
+        </form>
+      </div>
+    </div>
+
   </body>
 </html>
