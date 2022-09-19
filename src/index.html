@@ -15,13 +15,13 @@
 
       <section class="profile main__profile">
         <div class="profile__area">
-          <img src="<%=require('./images/Avatar.jpg')%>" alt="Фотография Жак-ива Кусто" class="profile__avatar">
-          <div class="profile__info">              
-            <h1 class="profile__fullname">Жак-Ив Кусто</h1>
+          <div class="profile__avatar"></div>
+          <div class="profile__info">
+            <h1 class="profile__fullname"></h1>
             <button aria-label="Edit Info" class="profile__edit-button" type="button"></button>
-            <p class="profile__profession">Исследователь океана</p>
+            <p class="profile__profession"></p>
           </div>
-        </div>        
+        </div>
         <button aria-label="Add place" class="profile__add-button" type="button"></button>
       </section>
 
@@ -33,7 +33,10 @@
               <button aria-label="Delete" class="card__button-delete" type="button"></button>
               <div class="card__body">
                 <h2 class="card__title"></h2>
-                <button aria-label="Like" class="card__button-like" type="button"></button>
+                <div class="card__container-for-info-like">
+                  <button aria-label="Like" class="card__button-like" type="button"></button>
+                  <p class="card__like-number"></p>
+                </div>
               </div>
             </li>
           </template>
@@ -85,8 +88,10 @@
     <div class="popup popup_background-color popup_delete-picture">
       <div class="popup__container">
         <button aria-label="Close" class="popup__button-close" type="button"></button>
-        <h2 class="popup__title">Вы уверены?</h2>
-        <input aria-label="Create" class="popup__button-save" type="submit" value="Да">
+        <form class="popup__form popup__form_place popup__form_no-margin" name="info-button-delete" method="get" novalidate>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <input aria-label="Create" class="popup__button-save popup__button-save_hover" type="submit" value="Да">
+        </form>
       </div>
     </div>
 

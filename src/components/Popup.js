@@ -25,13 +25,13 @@ export default class Popup {
     this._popup.addEventListener('click', (evt) => {
       if (evt.target === evt.currentTarget) {
         this.close(evt.target);
-      };
+      }
     });
   }
 
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
       this.close(this._openPopup);
-    };
+    }
   }
 }

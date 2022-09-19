@@ -11,8 +11,8 @@ export default class UserInfo {
     };
   }
 
-  setUserInfo(obj) {
-    this._name.textContent = obj.name;
-    this._info.textContent = obj.info; 
+  setUserInfo({name, info}) {
+    this._name.textContent = name;
+    this._info.textContent = info;
   }
 }
