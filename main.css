@@ -11,10 +11,10 @@
 .main__elements{margin:25.5px 0 0}@media screen and (max-width:984px){.main__elements{margin:18px 0 0}}
 .profile{align-items:center;display:flex;flex-direction:row;justify-content:space-between;min-height:120px;width:100%}@media screen and (max-width:710px){.profile{flex-direction:column;min-height:286px}}
 .profile__area{align-items:center;display:flex;flex-direction:row}@media screen and (max-width:710px){.profile__area{flex-direction:column}}
-.profile__avatar{border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;width:120px}
+.profile__avatar{background-position:50%;background-repeat:no-repeat;background-size:cover;border-radius:50%;cursor:pointer;height:120px;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;position:relative;width:120px}.profile__avatar:before{background:rgba(0,0,0,.8);bottom:0;content:"";left:0;opacity:0;position:absolute;right:0;top:0;transition:opacity .5s linear}.profile__avatar:hover:before{opacity:1}.profile__avatar:after{background:url(images/edit-avatar.a086f758840ae814ecde.svg);content:"";height:26px;left:47px;opacity:0;position:absolute;top:47px;transition:opacity .5s linear;width:26px}.profile__avatar:hover:after{opacity:1}
 .profile__add-button{background:url(images/Vector.d86bb2edc2f6eadb96b7.svg) no-repeat 50%;background-size:22px 22px;border:2px solid #fff;border-radius:2px;box-sizing:border-box;cursor:pointer;height:50px;padding:0;width:150px}.profile__add-button:hover{opacity:.6;transition:opacity .5s linear}@media screen and (max-width:710px){.profile__add-button{background-size:16px 16px;width:282px}}
 .profile__info{align-items:center;display:grid;grid-template-columns:294px 42px;grid-template-rows:48px 27px;margin-left:30px;max-width:336px}@media screen and (max-width:710px){.profile__info{grid-template-columns:189px 28px;grid-template-rows:33px 21px;margin:26px 0 0;max-width:217px}}
-.profile__fullname{color:#fff;font-family:Inter,Arial,Helvetica,sans-serif;font-size:42px;font-style:normal;font-weight:500;line-height:48px;margin:0;overflow:hidden;padding-bottom:9px;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:710px){.profile__fullname{font-size:27px;line-height:33px;padding-bottom:7px}}
+.profile__fullname{color:#fff;font-family:Inter,Arial,Helvetica,sans-serif;font-size:42px;font-style:normal;font-weight:500;line-height:48px;margin:0;overflow:hidden;padding-bottom:9px;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:710px){.profile__fullname{font-size:27px;line-height:33px;padding-bottom:7px;text-align:center}}
 .profile__edit-button{background:url(images/eddit-button.8667ac4a523e8fc42e59.svg) no-repeat 50%;background-size:10px 10px;border:1px solid #fff;box-sizing:border-box;cursor:pointer;height:24px;margin-left:18px;padding:0;width:24px}.profile__edit-button:hover{opacity:.6;transition:opacity .5s linear}@media screen and (max-width:710px){.profile__edit-button{background-size:7.5px 7.5px;height:18px;margin-left:10px;width:18px}}
 .profile__profession{color:#fff;font-family:Inter,Arial,Helvetica,sans-serif;font-size:18px;font-style:normal;font-weight:400;grid-column:1/span 2;line-height:22px;margin:0;overflow:hidden;padding-top:9px;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:710px){.profile__profession{font-size:14px;line-height:17px;padding-top:7px;text-align:center}}
 .elements{width:100%}
@@ -23,9 +23,11 @@
 .card__image{border-top-left-radius:10px;border-top-right-radius:10px;cursor:pointer;height:282px;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;width:100%}
 .card__button-delete{background:url(images/button-delete.823b0cf1b0b7e9cb7cad.svg) no-repeat 50%;background-size:18px 19px;border:none;cursor:pointer;height:19px;padding:0;position:absolute;right:20px;top:20px;width:18px}.card__button-delete:hover{opacity:.5;transition:opacity .5s linear}
 .card__title{color:#000;font-family:Inter,Arial,Helvetica,sans-serif;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:0;max-width:80%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.card__body{align-items:center;background-color:#fff;border-bottom-left-radius:10px;border-bottom-right-radius:10px;box-sizing:border-box;display:flex;flex-direction:row;justify-content:space-between;padding:25px 15px 25px 21px;width:100%}
+.card__body{align-items:center;background-color:#fff;border-bottom-left-radius:10px;border-bottom-right-radius:10px;box-sizing:border-box;display:flex;flex-direction:row;justify-content:space-between;padding:20px 15px 20px 21px;width:100%}
 .card__button-like{background:url(images/Like.87ed371465c7a6a1cd01.svg) no-repeat 50%;background-size:22px 19px;border:none;cursor:pointer;height:19px;padding:0;width:22px}.card__button-like:hover{opacity:.5;transition:opacity .5s linear}
 .card__button-like_active{background:url(images/Like-black.fe17a515669479b1e649.svg) no-repeat 50%}
+.card__container-for-info-like{display:flex;flex-direction:column;justify-content:space-between}
+.card__like-number{color:#000;font-family:Inter,Arial,Helvetica,sans-serif;font-size:13px;font-style:normal;font-weight:400;line-height:16px;margin:0;text-align:center}
 .footer{width:100%}
 .footer__text{color:#545454;font-family:Inter,Arial,Helvetica,sans-serif;font-size:18px;font-style:normal;font-weight:400;line-height:22px;margin:0}@media screen and (max-width:568px){.footer__text{font-size:14px;line-height:17px}}
 .popup{align-items:center;background-color:rgba(0,0,0,.5);bottom:0;display:flex;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;transition:visibility .5s,opacity .3s;visibility:hidden}
@@ -43,6 +45,7 @@
 .popup__input-text_error-visible{visibility:visible}
 .popup_opened{opacity:1;visibility:visible}
 .popup_background-color{background-color:rgba(0,0,0,.9)}
+.popup__form_no-margin{margin:0}
 .popup__figure{margin:0;position:relative}
 .popup__picture{font-size:0;max-height:75vh;max-width:75vw;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center}
 .popup__figcaption{align-self:flex-start;color:#fff;font-family:Inter,Arial,Helvetica,sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:15px;margin:10px 0 0;padding:0}
