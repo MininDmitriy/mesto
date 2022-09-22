@@ -8,24 +8,14 @@ export default class Api {
     return fetch(`${this._url}users/me`, {
       method: 'GET',
       headers: this._headers
-    }).then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Что-то пошло не так с загрузкой информации о пользователе с сервера: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   getInfoAboutCards() {
     return fetch(`${this._url}cards`, {
       method: 'GET',
       headers: this._headers
-    }).then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-        return Promise.reject(`Что-то пошло не так с загрузкой карточек с сервера: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   changeProfile(newName, newInfo) {
@@ -36,12 +26,7 @@ export default class Api {
         name: `${newName}`,
         about: `${newInfo}`
       })
-    }).then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Что-то пошло не так со сменой имени и профессии пользователя: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   changeAvatar(avatarNew) {
@@ -51,12 +36,7 @@ export default class Api {
       body: JSON.stringify({
         avatar: `${avatarNew}`,
       })
-    }).then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Что-то пошло не так со сменой аватара пользователя: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   addNewCard(name, link) {
@@ -67,47 +47,34 @@ export default class Api {
         name: `${name}`,
         link: `${link}`
       })
-    }).then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Что-то пошло не так с добавлением новой карточки: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   deleteCard(id) {
     return fetch(`${this._url}cards/${id}`, {
       method: 'DELETE',
       headers: this._headers
-    }).then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Что-то пошло не так с удалением карточки пользователя: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   deleteLikeCard(id) {
     return fetch(`${this._url}cards/${id}/likes`, {
       method: 'DELETE',
       headers: this._headers
-    }).then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Что-то пошло не так с удалением лайка с карточки: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   addLikeCard(id) {
     return fetch(`${this._url}cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers
-    }).then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Что-то пошло не так с добавлением лакйка карточки: ${res.status}`);
-    });
+    }).then(this._checkResponse);
+  }
+
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+      return Promise.reject(`Что-то пошло не так: ${res.status}`);
   }
 }

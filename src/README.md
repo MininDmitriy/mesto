@@ -66,4 +66,4 @@ Webpack настроен:
 
 ### GitPages
 
-Готовая работа размещена на бесплатном сервисе [GitPages](https://minindmitriy.github.io/mesto/).
+Готовая работа размещена на бесплатном сервисе [GitPages](https://minindmitriy.github.io/mesto).

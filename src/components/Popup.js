@@ -22,16 +22,16 @@ export default class Popup {
       this.close();
     });
     
-    this._popup.addEventListener('click', (evt) => {
+    this._popup.addEventListener('mousedown', (evt) => {
       if (evt.target === evt.currentTarget) {
-        this.close(evt.target);
+        this.close();
       }
     });
   }
 
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
-      this.close(this._openPopup);
+      this.close();
     }
   }
 }

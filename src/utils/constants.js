@@ -26,7 +26,14 @@ export const selectors = {
   formInput: '.popup__input',
   popupPicture: '.popup__picture',
   popupFigcaption: '.popup__figcaption',
-  popupAvatar: '.popup_form_edit-picture-profile'
+  popupAvatar: '.popup_form_edit-picture-profile',
+  inactiveButtonClass: 'popup__button-save_disabled',
+  buttonWithFormValidity: 'popup__button-save_hover',
+  inputErrorClass: 'popup__input_border-bottom_red',
+  inputValidity: 'popup__input_border-bottom_black',
+  errorVisibility: 'popup__input-text_error-visible',
+  activeHeart: 'card__button-like_active',
+  cardLikeNumber: '.card__like-number'
 }
 
 export const buttonEditProfile = document.querySelector(selectors.buttonEditProfile);
